@@ -1,0 +1,160 @@
+/* ============================================================
+   FRAUDTRACKER AI — GLOBAL DESIGN SYSTEM
+   Dark cybersecurity theme with neon accents & glassmorphism
+   ============================================================ */
+
+/* ── Google Fonts are loaded via index.html ── */
+
+/* ── CSS Custom Properties ─────────────────────────────── */
+:root {
+  /* Backgrounds */
+  --bg-base:        #080c14;
+  --bg-surface:     #0d1321;
+  --bg-elevated:    #111827;
+  --bg-card:        #141c2e;
+  --bg-card-hover:  #1a2540;
+
+  /* Borders */
+  --border-subtle:  rgba(255,255,255,0.06);
+  --border-default: rgba(255,255,255,0.10);
+  --border-strong:  rgba(255,255,255,0.18);
+
+  /* Brand / Accent */
+  --accent-primary:   #6366f1;      /* indigo */
+  --accent-secondary: #8b5cf6;      /* violet */
+  --accent-cyan:      #22d3ee;      /* cyber-cyan */
+  --accent-glow:      rgba(99,102,241,0.35);
+  --accent-gradient:  linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --accent-gradient-r:linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+
+  /* Status */
+  --danger:         #ef4444;
+  --danger-soft:    rgba(239,68,68,0.12);
+  --danger-border:  rgba(239,68,68,0.35);
+  --warning:        #f59e0b;
+  --warning-soft:   rgba(245,158,11,0.12);
+  --warning-border: rgba(245,158,11,0.35);
+  --success:        #10b981;
+  --success-soft:   rgba(16,185,129,0.12);
+  --success-border: rgba(16,185,129,0.35);
+  --info:           #22d3ee;
+  --info-soft:      rgba(34,211,238,0.10);
+
+  /* Risk colours */
+  --risk-critical: #dc2626;
+  --risk-high:     #ef4444;
+  --risk-medium:   #f59e0b;
+  --risk-low:      #10b981;
+
+  /* Text */
+  --text-primary:   #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted:     #64748b;
+  --text-accent:    #818cf8;
+
+  /* Typography */
+  --font-sans: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Spacing scale */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Radius */
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  16px;
+  --radius-xl:  22px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.04);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
+  --shadow-lg:  0 10px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.08);
+  --shadow-glow: 0 0 24px rgba(99,102,241,0.3);
+
+  /* Transitions */
+  --transition-fast:   150ms cubic-bezier(0.4,0,0.2,1);
+  --transition-normal: 250ms cubic-bezier(0.4,0,0.2,1);
+  --transition-slow:   400ms cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ── Reset ──────────────────────────────────────────────── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--bg-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  { background: var(--border-strong); border-radius: var(--radius-full); }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-primary); }
+
+/* ── Selection ──────────────────────────────────────────── */
+::selection { background: rgba(99,102,241,0.35); color: #fff; }
+
+/* ── Utility: glass card ────────────────────────────────── */
+.glass {
+  background: rgba(20, 28, 46, 0.7);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+}
+
+/* ── Utility: neon glow text ────────────────────────────── */
+.text-glow {
+  color: var(--accent-cyan);
+  text-shadow: 0 0 20px rgba(34,211,238,0.5);
+}
+
+/* ── 404 Page ───────────────────────────────────────────── */
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  text-align: center;
+  gap: var(--space-4);
+}
+
+.not-found h1 {
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 900;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.not-found p {
+  font-size: 18px;
+  color: var(--text-secondary);
+}

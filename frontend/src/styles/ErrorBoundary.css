@@ -1,0 +1,223 @@
+/* frontend/src/styles/ErrorBoundary.css */
+
+/* ── Page Wrapper ───────────────────────────────────────── */
+.error-boundary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--bg-base);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background glow blob */
+.error-boundary::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(ellipse, rgba(239,68,68,0.10) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Error Card ─────────────────────────────────────────── */
+.error-container {
+  position: relative;
+  z-index: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--danger-border);
+  border-radius: var(--radius-xl);
+  padding: 44px 40px;
+  max-width: 520px;
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--shadow-lg), 0 0 40px rgba(239,68,68,0.10);
+  animation: cardAppear 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Top danger accent border */
+.error-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--danger), #dc2626);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+@keyframes cardAppear {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── Icon ───────────────────────────────────────────────── */
+.error-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: var(--danger-soft);
+  border: 1px solid var(--danger-border);
+  border-radius: var(--radius-xl);
+  font-size: 40px;
+  margin-bottom: 22px;
+  animation: shake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  15%  { transform: translateX(-8px) rotate(-2deg); }
+  30%  { transform: translateX(8px)  rotate(2deg); }
+  45%  { transform: translateX(-6px); }
+  60%  { transform: translateX(6px); }
+  75%  { transform: translateX(-3px); }
+  90%  { transform: translateX(3px); }
+}
+
+/* ── Heading ────────────────────────────────────────────── */
+.error-container h2 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin: 0 0 12px;
+  letter-spacing: -0.4px;
+}
+
+/* ── Message ────────────────────────────────────────────── */
+.error-message {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 30px;
+
+  /* override shared danger styles for this context */
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+/* ── Actions ────────────────────────────────────────────── */
+.error-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.error-btn {
+  padding: 11px 24px;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 700;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  min-width: 120px;
+}
+
+.error-btn.primary {
+  background: var(--danger);
+  color: #fff;
+}
+
+.error-btn.primary:hover {
+  background: #dc2626;
+  box-shadow: 0 0 20px rgba(239,68,68,0.35);
+  transform: translateY(-1px);
+}
+
+.error-btn.secondary {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+}
+
+.error-btn.secondary:hover {
+  background: rgba(255,255,255,0.09);
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+}
+
+/* ── Details ────────────────────────────────────────────── */
+.error-details {
+  margin-top: 24px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border-subtle);
+  text-align: left;
+}
+
+.error-details summary {
+  cursor: pointer;
+  color: var(--text-accent);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  user-select: none;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.error-details summary::-webkit-details-marker { display: none; }
+.error-details summary::before { content: '›'; font-size: 18px; transition: transform var(--transition-fast); }
+details[open] .error-details summary::before { transform: rotate(90deg); }
+
+.error-details pre {
+  background: rgba(0,0,0,0.35);
+  border: 1px solid var(--border-subtle);
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  font-size: 11px;
+  color: #fca5a5;
+  font-family: var(--font-mono);
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ── Status indicator ───────────────────────────────────── */
+.error-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  background: var(--danger-soft);
+  border: 1px solid var(--danger-border);
+  color: #fca5a5;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 18px;
+}
+
+.error-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--danger);
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .error-container { padding: 32px 22px; }
+  .error-icon { width: 68px; height: 68px; font-size: 34px; }
+  .error-container h2 { font-size: 18px; }
+  .error-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .error-btn { width: 100%; }
+}

@@ -1,0 +1,359 @@
+/* frontend/src/styles/Responsive.css
+   Global responsive overrides — dark theme aware
+   All component-level breakpoints live in their own CSS files.
+   This file handles cross-cutting layout concerns. */
+
+/* ═══════════════════════════════════════════════
+   LARGE DESKTOP  (≤ 1400px)
+═══════════════════════════════════════════════ */
+@media (max-width: 1400px) {
+  .dashboard-page,
+  .transactions-page,
+  .insider-activity-page {
+    padding: 28px;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   DESKTOP / TABLET  (≤ 1200px)
+═══════════════════════════════════════════════ */
+@media (max-width: 1200px) {
+  .dashboard-page,
+  .transactions-page,
+  .insider-activity-page {
+    padding: 22px;
+  }
+
+  .metrics-grid,
+  .alert-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .charts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .navbar-container {
+    padding: 0 22px;
+  }
+
+  .create-tx-btn {
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   TABLET  (≤ 900px)
+═══════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .dashboard-page,
+  .transactions-page,
+  .insider-activity-page {
+    padding: 18px;
+  }
+
+  /* Page headers go vertical */
+  .dashboard-header,
+  .transactions-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  /* Grids */
+  .metrics-grid       { grid-template-columns: repeat(2, 1fr); }
+  .alert-stats-grid   { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid         { grid-template-columns: repeat(2, 1fr); }
+  .charts-grid        { grid-template-columns: 1fr; }
+  .quick-actions      { grid-template-columns: repeat(2, 1fr); }
+
+  /* Form rows */
+  .form-row { grid-template-columns: 1fr; gap: 14px; }
+
+  /* Table minimum width so it scrolls */
+  .transactions-table table { min-width: 720px; }
+
+  /* Navbar */
+  .navbar-container { padding: 0 18px; }
+  .user-details     { display: none; }
+  .navbar-live      { display: none; }
+}
+
+/* ═══════════════════════════════════════════════
+   LARGE MOBILE  (≤ 768px)
+═══════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  /* Layout */
+  .dashboard-page,
+  .transactions-page,
+  .insider-activity-page {
+    padding: 14px;
+  }
+
+  /* All section cards reduce padding */
+  .risk-distribution,
+  .recent-transactions,
+  .transactions-container,
+  .severity-distribution,
+  .alerts-container,
+  .activity-info {
+    padding: 18px 16px;
+  }
+
+  /* Metric cards */
+  .metric-card {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .metric-value { font-size: 26px; }
+
+  /* Tables */
+  .transactions-table { overflow-x: auto; }
+  .transactions-table th,
+  .transactions-table td { padding: 11px 12px; font-size: 12px; }
+
+  /* Modals */
+  .modal-content {
+    width: 96%;
+    max-height: 92vh;
+  }
+  .modal-header,
+  .modal-body,
+  .modal-footer { padding: 18px 20px; }
+  .info-grid { grid-template-columns: 1fr; gap: 12px; }
+  .modal-footer { flex-direction: column-reverse; }
+  .modal-btn { width: 100%; }
+
+  /* Filter panel */
+  .filter-panel {
+    width: 100%;
+    right: 0;
+    border-radius: 0;
+    top: 62px;
+    max-height: calc(100vh - 62px);
+  }
+
+  /* Alerts */
+  .alerts-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .filter-buttons { width: 100%; flex-wrap: wrap; }
+  .alert-item { flex-direction: column; }
+  .alert-header { flex-direction: column; gap: 4px; }
+  .alert-footer { flex-direction: column; gap: 8px; }
+  .action-btn { margin-left: 0; width: fit-content; }
+
+  /* Charts */
+  .chart-container { padding: 16px; margin-bottom: 14px; }
+
+  /* Risk bars */
+  .risk-bar { gap: 10px; }
+  .risk-label { min-width: 80px; font-size: 12px; }
+
+  /* Severity bars */
+  .severity-item > span:first-child { min-width: 70px; font-size: 12px; }
+
+  /* TX list */
+  .tx-item { flex-wrap: wrap; }
+  .tx-amount, .tx-risk { margin-left: auto; }
+
+  /* Skeleton table */
+  .skeleton-table-row { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ═══════════════════════════════════════════════
+   MOBILE  (≤ 600px)
+═══════════════════════════════════════════════ */
+@media (max-width: 600px) {
+  .dashboard-page,
+  .transactions-page,
+  .insider-activity-page {
+    padding: 12px;
+  }
+
+  /* Collapse all grids to single column */
+  .metrics-grid,
+  .alert-stats-grid,
+  .stats-grid,
+  .quick-actions,
+  .activities-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Metric card horizontal on small screens */
+  .metric-card { padding: 16px; gap: 14px; }
+  .metric-icon { width: 44px; height: 44px; font-size: 22px; }
+  .metric-value { font-size: 24px; }
+
+  /* Navbar */
+  .navbar-container {
+    padding: 10px 14px;
+    flex-wrap: wrap;
+    height: auto;
+  }
+  .navbar-menu {
+    order: 3;
+    width: 100%;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 10px;
+    margin-top: 6px;
+    gap: 4px;
+  }
+  .nav-link {
+    flex: 1;
+    text-align: center;
+    font-size: 12px;
+    padding: 7px 8px;
+  }
+  .navbar-subtitle { display: none; }
+  .logout-btn span { display: none; }
+
+  /* TX items go vertical */
+  .tx-item {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .tx-amount, .tx-risk {
+    margin-left: 0;
+    align-self: flex-start;
+    text-align: left;
+  }
+  .tx-risk { flex-direction: row; gap: 8px; }
+
+  /* Severity distribution */
+  .severity-item { flex-wrap: wrap; }
+  .bar-container { flex: 1 1 100%; height: 28px; }
+
+  /* Skeleton */
+  .skeleton-table-row { grid-template-columns: 1fr; }
+  .skeleton-box { height: 180px; }
+  .skeleton-chart-box { height: 220px; }
+}
+
+/* ═══════════════════════════════════════════════
+   SMALL MOBILE  (≤ 400px)
+═══════════════════════════════════════════════ */
+@media (max-width: 400px) {
+  .dashboard-page,
+  .transactions-page,
+  .insider-activity-page {
+    padding: 10px;
+  }
+
+  .metric-value { font-size: 22px; }
+  .stat-value   { font-size: 22px; }
+
+  .nav-link { font-size: 11px; padding: 6px 6px; }
+
+  .login-card { padding: 28px 18px; }
+  .login-header h1 { font-size: 20px; }
+
+  .risk-distribution,
+  .recent-transactions,
+  .transactions-container,
+  .severity-distribution,
+  .alerts-container,
+  .activity-info {
+    padding: 14px 12px;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   LANDSCAPE MOBILE
+═══════════════════════════════════════════════ */
+@media (max-height: 500px) and (orientation: landscape) {
+  .navbar-container { height: 56px; }
+
+  .dashboard-page,
+  .transactions-page,
+  .insider-activity-page { padding: 12px; }
+
+  .metrics-grid { grid-template-columns: repeat(4, 1fr); }
+  .chart-container { max-height: 280px; overflow: hidden; }
+}
+
+/* ═══════════════════════════════════════════════
+   PRINT
+═══════════════════════════════════════════════ */
+@media print {
+  .navbar,
+  .filter-toggle-btn,
+  .filter-panel,
+  .filter-overlay,
+  .create-tx-btn,
+  .create-btn,
+  .quick-actions,
+  .logout-btn,
+  .action-btn,
+  .modal-overlay,
+  .modal-content {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+    font-family: Georgia, serif;
+  }
+
+  .dashboard-page,
+  .transactions-page,
+  .insider-activity-page { padding: 0; background: #fff; }
+
+  .metric-card,
+  .section-card,
+  .chart-container,
+  .risk-distribution,
+  .transactions-container {
+    background: #fff !important;
+    border: 1px solid #ddd !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+    color: #000 !important;
+  }
+
+  .metric-value,
+  .stat-value,
+  .text-primary { color: #000 !important; }
+  .text-secondary, .text-muted { color: #555 !important; }
+
+  .transactions-table th { background: #f0f0f0 !important; color: #000 !important; }
+  .transactions-table td { color: #333 !important; border-color: #ddd !important; }
+}
+
+/* ═══════════════════════════════════════════════
+   ACCESSIBILITY — REDUCED MOTION
+═══════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   ACCESSIBILITY — HIGH CONTRAST
+═══════════════════════════════════════════════ */
+@media (prefers-contrast: more) {
+  :root {
+    --border-subtle:  rgba(255,255,255,0.2);
+    --border-default: rgba(255,255,255,0.35);
+    --border-strong:  rgba(255,255,255,0.55);
+    --text-secondary: #d1d5db;
+    --text-muted:     #9ca3af;
+  }
+
+  .risk-badge,
+  .severity-badge,
+  .filter-btn,
+  .nav-link {
+    outline: 1px solid currentColor;
+  }
+}

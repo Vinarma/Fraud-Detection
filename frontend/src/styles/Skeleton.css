@@ -1,0 +1,165 @@
+/* frontend/src/styles/Skeleton.css */
+
+/* ── Base shimmer animation ─────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}
+
+/* ── Skeleton base element ──────────────────────────────── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.04) 25%,
+    rgba(255,255,255,0.09) 50%,
+    rgba(255,255,255,0.04) 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+  border-radius: var(--radius-md);
+}
+
+/* ── Skeleton Line ──────────────────────────────────────── */
+.skeleton-line {
+  height: 14px;
+  border-radius: var(--radius-full);
+  margin-bottom: 10px;
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.04) 25%,
+    rgba(255,255,255,0.09) 50%,
+    rgba(255,255,255,0.04) 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+/* ── Skeleton Box ───────────────────────────────────────── */
+.skeleton-box {
+  height: 280px;
+  border-radius: var(--radius-lg);
+  margin-bottom: 12px;
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.03) 25%,
+    rgba(255,255,255,0.07) 50%,
+    rgba(255,255,255,0.03) 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+/* ── Skeleton Chart Container ───────────────────────────── */
+.skeleton-chart {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 18px;
+}
+
+.skeleton-title {
+  width: 38%;
+  height: 18px;
+  border-radius: var(--radius-full);
+  margin-bottom: 20px;
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.05) 25%,
+    rgba(255,255,255,0.10) 50%,
+    rgba(255,255,255,0.05) 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+.skeleton-chart-box {
+  height: 320px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.03) 25%,
+    rgba(255,255,255,0.07) 50%,
+    rgba(255,255,255,0.03) 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+/* ── Skeleton Metric Card ───────────────────────────────── */
+.skeleton-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  margin-bottom: 14px;
+}
+
+.skeleton-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  margin-bottom: 14px;
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.05) 25%,
+    rgba(255,255,255,0.10) 50%,
+    rgba(255,255,255,0.05) 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+/* ── Skeleton Transaction Item ──────────────────────────── */
+.skeleton-transaction {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  margin-bottom: 10px;
+}
+
+.skeleton-content { flex: 1; }
+
+/* ── Skeleton Table Row ─────────────────────────────────── */
+.skeleton-table-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.skeleton-cell {
+  height: 13px;
+  border-radius: var(--radius-full);
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.04) 25%,
+    rgba(255,255,255,0.09) 50%,
+    rgba(255,255,255,0.04) 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+/* Stagger animation delays for natural feel */
+.skeleton-table-row:nth-child(1) .skeleton-cell { animation-delay: 0ms; }
+.skeleton-table-row:nth-child(2) .skeleton-cell { animation-delay: 80ms; }
+.skeleton-table-row:nth-child(3) .skeleton-cell { animation-delay: 160ms; }
+.skeleton-table-row:nth-child(4) .skeleton-cell { animation-delay: 240ms; }
+.skeleton-table-row:nth-child(5) .skeleton-cell { animation-delay: 320ms; }
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .skeleton-table-row { grid-template-columns: repeat(2, 1fr); }
+  .skeleton-box       { height: 180px; }
+  .skeleton-chart-box { height: 240px; }
+}
+
+@media (max-width: 480px) {
+  .skeleton-table-row { grid-template-columns: 1fr; }
+}

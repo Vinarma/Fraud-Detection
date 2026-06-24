@@ -1,0 +1,291 @@
+/* frontend/src/styles/Navbar.css */
+
+/* ── Navbar Shell ───────────────────────────────────────── */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(8, 12, 20, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border-subtle);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* Subtle top accent line */
+.navbar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent-gradient);
+  opacity: 0.8;
+}
+
+/* ── Container ──────────────────────────────────────────── */
+.navbar-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 68px;
+  gap: 24px;
+}
+
+/* ── Brand ──────────────────────────────────────────────── */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity var(--transition-normal);
+  flex-shrink: 0;
+}
+
+.navbar-brand:hover { opacity: 0.85; }
+
+.navbar-logo-wrap {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-gradient);
+  border-radius: var(--radius-md);
+  box-shadow: 0 0 16px rgba(99,102,241,0.45);
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+/* fallback if .navbar-logo-wrap doesn't exist and .navbar-logo does */
+.navbar-logo {
+  font-size: 26px;
+}
+
+.navbar-title-wrap {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.navbar-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+.navbar-subtitle {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--accent-primary);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+/* ── Nav Menu ───────────────────────────────────────────── */
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+
+.nav-link {
+  position: relative;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  padding: 8px 14px;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-normal);
+  letter-spacing: 0.1px;
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.06);
+}
+
+.nav-link.active {
+  color: var(--text-accent);
+  background: rgba(99,102,241,0.12);
+}
+
+/* Active indicator dot */
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  box-shadow: 0 0 8px rgba(99,102,241,0.8);
+}
+
+/* ── Live indicator badge ───────────────────────────────── */
+.navbar-live {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px;
+  border-radius: var(--radius-full);
+  background: var(--success-soft);
+  border: 1px solid var(--success-border);
+  font-size: 11px;
+  font-weight: 700;
+  color: #6ee7b7;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--success);
+  animation: livePulse 2s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+  0%, 100% { opacity: 1;   box-shadow: 0 0 0 0 rgba(16,185,129,0.6); }
+  50%       { opacity: 0.7; box-shadow: 0 0 0 5px rgba(16,185,129,0); }
+}
+
+/* ── User Section ───────────────────────────────────────── */
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.user-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  background: var(--accent-gradient);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+  border: 2px solid rgba(99,102,241,0.35);
+  box-shadow: 0 0 12px rgba(99,102,241,0.3);
+  flex-shrink: 0;
+  letter-spacing: 0;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.user-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.user-email {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1;
+}
+
+/* ── Logout button ──────────────────────────────────────── */
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: rgba(239,68,68,0.08);
+  color: #fca5a5;
+  border: 1px solid rgba(239,68,68,0.25);
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  white-space: nowrap;
+  letter-spacing: 0.2px;
+}
+
+.logout-btn:hover {
+  background: rgba(239,68,68,0.16);
+  border-color: rgba(239,68,68,0.45);
+  transform: translateY(-1px);
+}
+
+/* ── Divider ────────────────────────────────────────────── */
+.navbar-divider {
+  width: 1px;
+  height: 28px;
+  background: var(--border-subtle);
+  flex-shrink: 0;
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .navbar-container {
+    padding: 0 20px;
+    height: 62px;
+  }
+
+  .user-details { display: none; }
+  .navbar-live   { display: none; }
+
+  .navbar-menu { gap: 2px; }
+
+  .nav-link {
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .navbar-container {
+    padding: 0 16px;
+    flex-wrap: wrap;
+    height: auto;
+    min-height: 62px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .navbar-menu {
+    order: 3;
+    width: 100%;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 10px;
+    margin-top: 4px;
+  }
+
+  .navbar-title { font-size: 14px; }
+  .navbar-subtitle { display: none; }
+
+  .logout-btn span { display: none; }
+}
