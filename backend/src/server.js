@@ -1,12 +1,12 @@
 // backend/src/server.js
-const express  = require('express');
-const cors     = require('cors');
-const http     = require('http');
+const express = require('express');
+const cors = require('cors');
+const http = require('http');
 const { Server } = require('socket.io');
 require('dotenv').config();
 const connectDB = require('./config/db');
 
-const app        = express();
+const app = express();
 const httpServer = http.createServer(app);
 
 // ==========================================
@@ -83,11 +83,11 @@ app.get('/api/health', (req, res) => {
     socketConnections: io.engine.clientsCount,
     version: '2.0.0',
     features: {
-      socketIO:    true,
-      geminiAI:    !!process.env.GEMINI_API_KEY,
-      stripe:      !!process.env.STRIPE_SECRET_KEY,
+      socketIO: true,
+      geminiAI: !!process.env.GEMINI_API_KEY,
+      stripe: !!process.env.STRIPE_SECRET_KEY,
       stripeWebhook: !!process.env.STRIPE_WEBHOOK_SECRET,
-      geoIP:       !!process.env.IPINFO_TOKEN
+      geoIP: !!process.env.IPINFO_TOKEN
     }
   });
 });
@@ -95,12 +95,12 @@ app.get('/api/health', (req, res) => {
 // ==========================================
 // API ROUTES
 // ==========================================
-app.use('/api/auth',       require('./routes/auth'));
+app.use('/api/auth', require('./routes/auth'));
 app.use('/api/transaction', require('./routes/transaction'));
-app.use('/api/insider',    require('./routes/insider'));
-app.use('/api/simulate',   require('./routes/simulate'));
-app.use('/api/realtime',   require('./routes/realtime'));
-app.use('/api/geoip',      require('./routes/geoip'));
+app.use('/api/insider', require('./routes/insider'));
+app.use('/api/simulate', require('./routes/simulate'));
+app.use('/api/realtime', require('./routes/realtime'));
+app.use('/api/geoip', require('./routes/geoip'));
 
 // ==========================================
 // 404 HANDLER
@@ -121,7 +121,7 @@ app.use((err, req, res, next) => {
 // START SERVER
 // ==========================================
 const PORT = process.env.PORT || 4000;
-const HOST = process.env.HOST || 'localhost';
+const HOST = '0.0.0.0';
 
 httpServer.listen(PORT, HOST, () => {
   console.log(`
